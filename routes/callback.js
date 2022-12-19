@@ -1,51 +1,38 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config');
-var spotifyWebApi = require('spotify-web-api-node');
-var config = require('../config');
-
-// credentials are optional
-var spotifyApi = new spotifyWebApi({
-    clientId: config.clientId,
-    clientSecret: config.clientSecret,
-    redirectUri: config.redirectUri
-});
+var request = require('request');
 
 /* GET callback page. */
-router.get('/', function (req, res, next) {
-    const error = req.query.error;
-    const code = req.query.code;
-    const state = req.query.state;
-
-    if (error) {
-        console.error('Callback Error:', error);
-        res.send(`Callback Error: ${error}`);
-        return;
-    }
+router.get('/', function (req, res) {
+    var code = req.query.code || null;
+    var state = req.query.state || null;
 
     if (state === null) {
-        res.redirect('/#' +
+        res.redirect('/' +
             querystring.stringify({
                 error: 'state_mismatch'
             }));
     } else {
-        spotifyApi.authorizationCodeGrant(code).then(
-            function (data) {
-                console.log('The token expires in ' + data.body['expires_in']);
-                console.log('The access token is ' + data.body['access_token']);
-                console.log('The refresh token is ' + data.body['refresh_token']);
-
-                // Set the access token on the API object to use it in later calls
-                spotifyApi.setAccessToken(data.body['access_token']);
-                spotifyApi.setRefreshToken(data.body['refresh_token']);
+        var authOptions = {
+            method: 'POST',
+            url: 'https://accounts.spotify.com/api/token',
+            form: {
+                code: code,
+                redirect_uri: config.redirectUri,
+                grant_type: 'authorization_code'
             },
-            function (err) {
-                console.log('Something went wrong!', err);
-            }
-        );
+            headers: {
+                'Authorization': 'Basic ' + (new Buffer(config.clientId + ':' + config.clientSecret).toString('base64')),
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        };
+        request(authOptions, function (error, response, body) {
+            console.log(response);
+            console.log(body);
+        })
     }
     res.redirect('/mypage');
-    // res.render('index', { title: 'SpotifyPlaylistApp' });
 });
 
 module.exports = router;

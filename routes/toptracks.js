@@ -1,8 +1,10 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
+var callback = require('./callback.js');
 //Import Module
 const localStorage = require("localStorage");
+const { token } = require('morgan');
 
 //Setting localStorage Item
 localStorage.setItem('accessToken', 'testtoken')
@@ -17,7 +19,8 @@ localStorage.setItem('accessToken', 'testtoken')
 const getAccessToken = () => localStorage.getItem('accessToken');
 
 router.get('/', function (req, res, next) {
-    const token = getAccessToken();
+    // const token = callback.access_token;
+    // const token = getAccessToken();
     // var options = {
     //     url: 'https://api.spotify.com/v1/me/top/tracks',
     //     method: 'GET',
@@ -37,7 +40,12 @@ router.get('/', function (req, res, next) {
     //     console.log(body);
     //     res.render('mypage', { json: body });
     // });
-    console.log(token);
+    console.log("here is /toptracks");
+    console.log(callback.token);
+    var token = callback.token;
+    console.log("here is /toptracks");
+
+    res.render('toptracks', { token: token });
 });
 
 module.exports = router;
