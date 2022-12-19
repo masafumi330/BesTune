@@ -12,7 +12,7 @@ var spotifyApi = new spotifyWebApi({
 });
 
 var state = 'some-state-of-my-choice';
-var scopes = ['user-read-private', 'user-read-email'];
+var scopes = ['user-read-private', 'user-read-email', 'user-top-read'];
 // Create the authorization URL
 var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
 

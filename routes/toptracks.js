@@ -14,14 +14,29 @@ const localStorage = require("localStorage");
 const getAccessToken = () => localStorage.getItem('accessToken');
 
 router.get('/', function (req, res, next) {
-    const token = getAccessToken();
-    if (!token) {
+    const accessToken = getAccessToken();
+    if (!accessToken) {
         console.log("tokenがありません！");
         // auhorize -> exchange token from code
         res.redirect('/login')
     }
-    console.log("tokenはあります！！");
-    console.log(token);
+    console.log("accessToken: " + accessToken);
+    var authOptions = {
+        method: 'GET',
+        url: 'https://api.spotify.com/v1/me/top/tracks',
+        qs: {
+            limit: 30,
+            time_range: "short_term"
+        },
+        headers: {
+            'Authorization': 'Bearer ' + accessToken,
+            'Content-Type': 'application/json'
+        },
+        json: true
+    };
+    request(authOptions, function (error, response, body) {
+        console.log(body);
+    })
 
     res.render('toptracks');
 });
