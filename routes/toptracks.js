@@ -15,11 +15,12 @@ const getAccessToken = () => localStorage.getItem('accessToken');
 
 router.get('/', function (req, res, next) {
     const accessToken = getAccessToken();
-    if (!accessToken) {
-        console.log("tokenがありません！");
-        // auhorize -> exchange token from code
-        res.redirect('/login')
-    }
+    // tokenがない場合は一旦後回し
+    // if (!accessToken) {
+    // console.log("tokenがありません！");
+    // auhorize -> exchange token from code
+    // res.redirect('/login')
+    // }
     console.log("accessToken: " + accessToken);
     var authOptions = {
         method: 'GET',
@@ -35,10 +36,10 @@ router.get('/', function (req, res, next) {
         json: true
     };
     request(authOptions, function (error, response, body) {
-        console.log(body);
+        var songList = body.items;
+        res.render('toptracks', { songList: songList });
     })
 
-    res.render('toptracks');
 });
 
 module.exports = router;
