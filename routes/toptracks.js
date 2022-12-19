@@ -18,10 +18,10 @@ router.get('/', function (req, res, next) {
     if (!token) {
         console.log("tokenがありません！");
         // auhorize -> exchange token from code
-        res.redirect('/')
+        res.redirect('/login')
     }
 
-    res.render('toptracks',);
+    res.render('toptracks');
 });
 
 module.exports = router;

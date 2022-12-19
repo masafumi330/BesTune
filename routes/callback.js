@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config');
 var request = require('request');
+const localStorage = require("localStorage");
 
 /* GET callback page. */
 router.get('/', function (req, res) {
@@ -26,10 +27,12 @@ router.get('/', function (req, res) {
                 'Authorization': 'Basic ' + (new Buffer(config.clientId + ':' + config.clientSecret).toString('base64')),
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
+            json: true
         };
         request(authOptions, function (error, response, body) {
-            console.log(response);
-            console.log(body);
+            // localStorage.setItem('accessToken', body.)
+            console.log("=========== Body ===============");
+            console.log(body.access_token);
         })
     }
     res.redirect('/mypage');
