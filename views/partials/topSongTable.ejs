@@ -1,0 +1,30 @@
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+        <tr>
+            <th>Name</th>
+            <th>Artist</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var song of songList) { %>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                            style="width: 45px; height: 45px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">
+                                <%= song.name %>
+                            </p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">
+                        <%= song.artists[0].name %>
+                    </p>
+                </td>
+            </tr>
+            <% } %>
+    </tbody>
+</table>

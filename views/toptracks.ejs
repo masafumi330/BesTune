@@ -1,22 +1,6 @@
 <%- include('partials/header'); %>
     <div class="p-5 text-center bg-light">
-        <% for (var song of songList) { %>
-            <a href="#">
-                <span class="order-number">order-number</span>
-                <span class="track_info">
-                    <span class="track_cover">
-                        <span class="track_summary">
-                            <span class="track_artist">
-                                <%= song.artists[0].name %>
-                            </span>
-                            <span class="track_track-name">
-                                <%= song.name %>
-                            </span>
-                        </span>
-                    </span>
-                </span>
-            </a>
-            <% } %>
+        <%- include('partials/topSongTable'); %>
     </div>
 
     <%- include('partials/footer'); %>
