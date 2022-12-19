@@ -30,9 +30,7 @@ router.get('/', function (req, res) {
             json: true
         };
         request(authOptions, function (error, response, body) {
-            // localStorage.setItem('accessToken', body.)
-            console.log("=========== Body ===============");
-            console.log(body.access_token);
+            localStorage.setItem('accessToken', body.access_token)
         })
     }
     res.redirect('/mypage');

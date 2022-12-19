@@ -20,6 +20,8 @@ router.get('/', function (req, res, next) {
         // auhorize -> exchange token from code
         res.redirect('/login')
     }
+    console.log("tokenはあります！！");
+    console.log(token);
 
     res.render('toptracks');
 });
