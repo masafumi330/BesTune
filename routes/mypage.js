@@ -80,14 +80,28 @@ router.post('/toptracks', function (req, res, next) {
         body: JSON.stringify({
           name: "New Playlist test",
           description: "This is the test playlist"
-        }),
+        })
       };
 
       var createPlaylistRes = await reqp(createEmptyPlaylistOpt);
+      var createPlayListJson = JSON.parse(createPlaylistRes);
 
-      // console.log("in async songList: ", songListRes.items[0]);
-      // console.log("in async userIDRes: ", userIDRes.id);
-      console.log("in async createPlaylistRes: ", createPlaylistRes);
+      var addTracksPlaylistOpt = {
+        method: 'POST',
+        url: `https://api.spotify.com/v1/playlists/${createPlayListJson.id}/tracks`,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uris: [
+            "spotify:track:35lxFAny9XDBkvE6r9j4uG",
+            "spotify:track:1C5utO1I8FoSIn6g1R5DAZ"
+          ]
+        })
+      };
+
+      var addTracksPlaylistRes = await reqp(addTracksPlaylistOpt);
     } catch (error) {
       console.error(error);
     }
