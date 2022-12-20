@@ -62,6 +62,15 @@ router.post('/toptracks', function (req, res, next) {
     },
     json: true
   };
+  var createEmptyPlaylistOpt = {
+    method: 'POST',
+    url: 'https://api.spotify.com/v1/me',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken,
+      'Content-Type': 'application/json'
+    },
+    json: true
+  };
 
   async function makePlaylist() {
     try {
@@ -76,7 +85,8 @@ router.post('/toptracks', function (req, res, next) {
   }
   makePlaylist();
   console.log("out async");
-  res.status(200).send('toptracks playlist make');
+  res.status(200);
+  res.redirect('/mypage');
 });
 
 module.exports = router;
