@@ -53,6 +53,7 @@ router.post('/toptracks', function (req, res, next) {
     },
     json: true
   };
+
   var getUserIDOpt = {
     method: 'GET',
     url: 'https://api.spotify.com/v1/me',
@@ -62,23 +63,31 @@ router.post('/toptracks', function (req, res, next) {
     },
     json: true
   };
-  var createEmptyPlaylistOpt = {
-    method: 'POST',
-    url: 'https://api.spotify.com/v1/me',
-    headers: {
-      'Authorization': 'Bearer ' + accessToken,
-      'Content-Type': 'application/json'
-    },
-    json: true
-  };
+
 
   async function makePlaylist() {
     try {
       var songListRes = await reqp(getTopTracksOpt);
       var userIDRes = await reqp(getUserIDOpt);
 
-      console.log("in async songList: ", songListRes.items[0]);
-      console.log("in async userIDRes: ", userIDRes.id);
+      var createEmptyPlaylistOpt = {
+        method: 'POST',
+        url: `https://api.spotify.com/v1/users/${userIDRes.id}/playlists`,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: "New Playlist test",
+          description: "This is the test playlist"
+        }),
+      };
+
+      var createPlaylistRes = await reqp(createEmptyPlaylistOpt);
+
+      // console.log("in async songList: ", songListRes.items[0]);
+      // console.log("in async userIDRes: ", userIDRes.id);
+      console.log("in async createPlaylistRes: ", createPlaylistRes);
     } catch (error) {
       console.error(error);
     }
