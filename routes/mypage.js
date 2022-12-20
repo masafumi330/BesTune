@@ -101,8 +101,20 @@ router.post('/toptracks', function (req, res, next) {
           uris: spotifySongURIs
         })
       };
-
       var addTracksPlaylistRes = await reqp(addTracksPlaylistOpt);
+
+      var getPlaylistCoverOpt = {
+        method: 'GET',
+        url: `https://api.spotify.com/v1/playlists/${createPlayListJson.id}/images`,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken,
+          'Content-Type': 'application/json'
+        },
+        json: true
+      };
+      var getPlaylistCoverRes = await reqp(getPlaylistCoverOpt);
+      console.log(getPlaylistCoverRes);
+
     } catch (error) {
       console.error(error);
     }
