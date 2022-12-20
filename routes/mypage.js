@@ -68,6 +68,10 @@ router.post('/toptracks', function (req, res, next) {
   async function makePlaylist() {
     try {
       var songListRes = await reqp(getTopTracksOpt);
+      var spotifySongURIs = [];
+      for (var song of songListRes.items) {
+        spotifySongURIs.push(song.uri);
+      }
       var userIDRes = await reqp(getUserIDOpt);
 
       var createEmptyPlaylistOpt = {
@@ -94,10 +98,7 @@ router.post('/toptracks', function (req, res, next) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          uris: [
-            "spotify:track:35lxFAny9XDBkvE6r9j4uG",
-            "spotify:track:1C5utO1I8FoSIn6g1R5DAZ"
-          ]
+          uris: spotifySongURIs
         })
       };
 
