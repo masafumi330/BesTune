@@ -33,4 +33,8 @@ router.get('/', function (req, res, next) {
   }
 });
 
+router.post('/toptracks', function (req, res, next) {
+  res.status(200).send('toptracks playlist make');
+});
+
 module.exports = router;
