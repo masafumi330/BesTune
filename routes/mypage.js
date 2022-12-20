@@ -9,23 +9,28 @@ const getAccessToken = () => localStorage.getItem('accessToken');
 /* GET mypage listing. */
 router.get('/', function (req, res, next) {
   const accessToken = getAccessToken();
-  var authOptions = {
-    method: 'GET',
-    url: 'https://api.spotify.com/v1/me/top/tracks',
-    qs: {
-      limit: 30,
-      time_range: "short_term"
-    },
-    headers: {
-      'Authorization': 'Bearer ' + accessToken,
-      'Content-Type': 'application/json'
-    },
-    json: true
-  };
-  request(authOptions, function (error, response, body) {
-    var songList = body.items;
-    res.render('mypage', { songList: songList });
-  })
+
+  if (!accessToken) {
+    res.redirect('/login');
+  } else {
+    var authOptions = {
+      method: 'GET',
+      url: 'https://api.spotify.com/v1/me/top/tracks',
+      qs: {
+        limit: 30,
+        time_range: "short_term"
+      },
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/json'
+      },
+      json: true
+    };
+    request(authOptions, function (error, response, body) {
+      var songList = body.items;
+      res.render('mypage', { songList: songList });
+    })
+  }
 });
 
 module.exports = router;
