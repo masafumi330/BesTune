@@ -74,6 +74,10 @@ router.post('/toptracks', function (req, res, next) {
       }
       var userIDRes = await reqp(getUserIDOpt);
 
+
+      const now = new Date();
+      const month = new Intl.DateTimeFormat('en', { month: 'long' }).format(now);
+      const year = now.getFullYear();
       var createEmptyPlaylistOpt = {
         method: 'POST',
         url: `https://api.spotify.com/v1/users/${userIDRes.id}/playlists`,
@@ -82,7 +86,7 @@ router.post('/toptracks', function (req, res, next) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          name: "New Playlist test",
+          name: `ResLis - YOUR TOP-50 TRACKS in ${month} ${year}`,
           description: "This is the test playlist"
         })
       };
