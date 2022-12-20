@@ -8,7 +8,6 @@ var indexRouter = require('./routes/index');
 var mypageRouter = require('./routes/mypage');
 var loginRouter = require('./routes/login');
 var callbackRouter = require('./routes/callback');
-var toptracksRouter = require('./routes/toptracks');
 
 var app = express();
 
@@ -26,7 +25,6 @@ app.use('/', indexRouter);
 app.use('/mypage', mypageRouter);
 app.use('/login', loginRouter);
 app.use('/callback', callbackRouter);
-app.use('/toptracks', toptracksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
