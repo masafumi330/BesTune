@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config');
+require('dotenv').config();
 var request = require('request');
 const localStorage = require("localStorage");
 
@@ -20,11 +20,11 @@ router.get('/', function (req, res) {
             url: 'https://accounts.spotify.com/api/token',
             form: {
                 code: code,
-                redirect_uri: config.redirectUri,
+                redirect_uri: process.env.REDIRECT_URI,
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (new Buffer(config.clientId + ':' + config.clientSecret).toString('base64')),
+                'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')),
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             json: true

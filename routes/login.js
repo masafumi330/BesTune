@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var spotifyWebApi = require('spotify-web-api-node');
-var config = require('../config');
+require('dotenv').config();
 
 
 // credentials are optional
 var spotifyApi = new spotifyWebApi({
-  clientId: config.clientId,
-  clientSecret: config.clientSecret,
-  redirectUri: config.redirectUri
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  redirectUri: process.env.REDIRECT_URI
 });
 
 var state = 'some-state-of-my-choice';
