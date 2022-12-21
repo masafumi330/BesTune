@@ -23,3 +23,7 @@ body {
 .table {
   word-break: break-all;
 }
+
+td {
+  padding: 0.5rem;
+}

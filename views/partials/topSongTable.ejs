@@ -1,16 +1,21 @@
-<div class="table-responsive p-4">
+<div class="table-responsive container-sm">
     <table class="table align-middle mb-0 bg-white">
-
+        <thead class="bg-light">
+            <tr>
+                <th class="col-xs-1"></th>
+                <th class="col-xs-11"></th>
+            </tr>
+        </thead>
         <tbody>
             <% songList.forEach((song, i)=> { %>
                 <tr>
-                    <td>
+                    <td class="text-center">
                         <%= i + 1 %>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="<%= song.album.images[2].url %> " alt="" style="width: 45px; height: 45px"
-                                class="rounded-squere" />
+                            <img src="<%= song.album.images[2].url %> " alt="" style="width: 4.5vm; height: 4.5vm"
+                                class="rounded" />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1">
                                     <%= song.name %>
