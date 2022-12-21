@@ -1,18 +1,10 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-.create-playlist-btn {
-  position: fixed;
-  z-index: 20;
+  background-color: #E8EFFF;
 }
 
 .navbar {
   background-color: #334574;
-}
-
-body {
-  background-color: #E8EFFF;
 }
 
 .nav-link,
@@ -26,4 +18,26 @@ body {
 
 td {
   padding: 0.5rem;
+}
+
+.spotify-btn {
+  background-color: #1DB954;
+}
+
+@media screen and (max-width:480px) {
+
+  /* for smartphone */
+  .create-playlist-btn {
+    position: fixed;
+    bottom: 7.5vh;
+    left: 10vw;
+    right: 10vw;
+  }
+}
+
+/*　for PC　*/
+.create-playlist-btn {
+  position: fixed;
+  bottom: 7.5vh;
+  right: 10vw;
 }
