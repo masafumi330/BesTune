@@ -4,12 +4,22 @@ body {
 }
 
 .navbar {
-  background-color: #334574;
+  background-color: #000;
 }
 
 .nav-link,
 .navbar-toggler {
   color: #fff;
+}
+
+.title {
+  color: #fff;
+  width: 100vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 0;
 }
 
 .table {
@@ -18,7 +28,7 @@ body {
 
 .sign-in-btn {
   position: relative;
-  top: 40vh;
+  top: 70vh;
 }
 
 .spotify-btn {
