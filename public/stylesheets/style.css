@@ -1,13 +1,21 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
 }
 
 .create-playlist-btn {
   position: fixed;
   z-index: 20;
+}
+
+.navbar {
+  background-color: #334574;
+}
+
+body {
+  background-color: #E8EFFF;
+}
+
+.nav-link,
+.navbar-toggler {
+  color: #fff;
 }
