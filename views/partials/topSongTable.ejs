@@ -1,31 +1,28 @@
-<table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-        <tr>
-            <th>No.</th>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% songList.forEach((song, i)=> { %>
-            <tr>
-                <td>
-                    <%= i + 1 %>
-                </td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <img src="<%= song.album.images[2].url %> " alt="" style="width: 45px; height: 45px"
-                            class="rounded-squere" />
-                        <div class="ms-3">
-                            <p class="fw-bold mb-1">
-                                <%= song.name %>
-                            </p>
-                            <p class="fw-normal mb-1">
-                                <%= song.artists[0].name %>
-                            </p>
+<div class="table-responsive p-4">
+    <table class="table align-middle mb-0 bg-white">
+
+        <tbody>
+            <% songList.forEach((song, i)=> { %>
+                <tr>
+                    <td>
+                        <%= i + 1 %>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="<%= song.album.images[2].url %> " alt="" style="width: 45px; height: 45px"
+                                class="rounded-squere" />
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">
+                                    <%= song.name %>
+                                </p>
+                                <p class="fw-normal mb-1">
+                                    <%= song.artists[0].name %>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            <% }) %>
-    </tbody>
-</table>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>

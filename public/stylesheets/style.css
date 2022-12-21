@@ -19,3 +19,7 @@ body {
 .navbar-toggler {
   color: #fff;
 }
+
+.table {
+  word-break: break-all;
+}

@@ -1,32 +1,30 @@
 <%- include('partials/header'); %>
-  <div class="p-5 text-center">
-    <%- include('partials/topSongTable'); %>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary sticky-top" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-        Create Playlist
-      </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
-              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">こちらのプレイリストを作成しちゃいます？</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">No</button>
-              <form method="post" action="mypage/toptracks">
-                <button type="submit" class="btn btn-primary">Yes</button>
-              </form>
+  <%- include('partials/topSongTable'); %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary sticky-top" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+      Create Playlist
+    </button>
 
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">こちらのプレイリストを作成しちゃいます？</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">No</button>
+            <form method="post" action="mypage/toptracks">
+              <button type="submit" class="btn btn-primary">Yes</button>
+            </form>
+
           </div>
         </div>
       </div>
+    </div>
 
-  </div>
 
-
-  <%- include('partials/footer'); %>
+    <%- include('partials/footer'); %>
