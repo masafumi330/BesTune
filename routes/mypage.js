@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
       method: 'GET',
       url: 'https://api.spotify.com/v1/me/top/tracks',
       qs: {
-        limit: 30,
+        limit: 50,
         time_range: "short_term"
       },
       headers: {

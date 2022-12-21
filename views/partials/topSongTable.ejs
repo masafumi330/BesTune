@@ -9,11 +9,11 @@
         <tbody>
             <% songList.forEach((song, i)=> { %>
                 <tr>
-                    <td class="text-center">
+                    <td class="text-center" style="padding: 0.5rem;">
                         <%= i + 1 %>
                     </td>
                     <td>
-                        <div class="d-flex align-items-center">
+                        <div class=" d-flex align-items-center">
                             <img src="<%= song.album.images[2].url %> " alt="" style="width: 4.5vm; height: 4.5vm"
                                 class="rounded" />
                             <div class="ms-3">
