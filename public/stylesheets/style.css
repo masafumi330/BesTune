@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.create-playlist-btn {
+  position: fixed;
+  z-index: 20;
+}
