@@ -38,9 +38,9 @@ body {
   /* for smartphone */
   .create-playlist-btn {
     position: fixed;
-    bottom: 7.5vh;
-    left: 10vw;
-    right: 10vw;
-    font-size: 4vw;
+    bottom: 6vh;
+    /* left: 10vw; */
+    right: 7vw;
+    font-size: 5vw;
   }
 }
