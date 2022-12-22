@@ -6,6 +6,7 @@ const request = require('request');
 const reqp = require('request-promise');
 
 const getAccessToken = () => localStorage.getItem('accessToken');
+var playlistURI = "";
 
 /* GET mypage listing. */
 router.get('/', function (req, res, next) {
@@ -32,6 +33,10 @@ router.get('/', function (req, res, next) {
       res.render('mypage', { songList: songList });
     })
   }
+});
+
+router.get('/done', function (req, res, next) {
+  res.render('mypage/done');
 });
 
 router.post('/toptracks', function (req, res, next) {
@@ -117,16 +122,17 @@ router.post('/toptracks', function (req, res, next) {
         json: true
       };
       var getPlaylistCoverRes = await reqp(getPlaylistCoverOpt);
-      console.log(getPlaylistCoverRes);
 
+      playlistURI = createPlayListJson.uri;
+      res.status(200);
+      // res.render('mypage/done', { playlistURI: createPlayListJson.uri });
+      res.redirect('./done');
     } catch (error) {
       console.error(error);
     }
   }
   makePlaylist();
-  console.log("out async");
-  res.status(200);
-  res.redirect('/mypage');
+
 });
 
 module.exports = router;
