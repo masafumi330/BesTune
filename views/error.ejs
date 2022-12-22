@@ -1,3 +1,14 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<%- include('partials/header'); %>
+    <div class="text-center p-5" id="wrapper" style="height: 90vh;">
+        <div class="title">
+            <h3>Oops! 問題が発生したようです</h3>
+            <h5>
+                開発者まで教えてね
+            </h5>
+        </div>
+        <div class="text-center sign-in-btn">
+            <a class="btn btn-primary btn-lg btn-rounded" href="/mypage" role="button">Mypageへ戻る</a>
+        </div>
+    </div>
+
+    <%- include('partials/footer'); %>

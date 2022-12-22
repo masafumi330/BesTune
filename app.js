@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var errorRouter = require('./routes/error');
 var mypageRouter = require('./routes/mypage');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use('/public', express.static('public'))
 
 app.use('/', indexRouter);
+app.use('/error', errorRouter);
 app.use('/mypage', mypageRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);

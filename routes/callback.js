@@ -30,10 +30,13 @@ router.get('/', function (req, res) {
             json: true
         };
         request(authOptions, function (error, response, body) {
+            if (error) {
+                res.redirect('/error');
+            }
             localStorage.setItem('accessToken', body.access_token)
+            res.redirect('/mypage');
         })
     }
-    res.redirect('/mypage');
 });
 
 module.exports = router;

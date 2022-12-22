@@ -29,6 +29,9 @@ router.get('/', function (req, res, next) {
       json: true
     };
     request(authOptions, function (error, response, body) {
+      if (error) {
+        res.redirect('/error');
+      }
       var songList = body.items;
       res.render('mypage', { songList: songList });
     })
@@ -57,6 +60,9 @@ router.get('/done', function (req, res, next) {
       json: true
     };
     request(authOptions, function (error, response, body) {
+      if (error) {
+        res.redirect('/error');
+      }
       var json = {
         name: body.name,
         uri: body.uri,
@@ -153,7 +159,7 @@ router.post('/toptracks', function (req, res, next) {
       res.status(200);
       res.redirect(`./done?playlist=` + createPlayListJson.id);
     } catch (error) {
-      console.error(error);
+      res.redirect('/error');
     }
   }
   makePlaylist();
