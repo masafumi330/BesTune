@@ -37,10 +37,23 @@ router.get('/', function (req, res, next) {
 
 router.get('/done', function (req, res, next) {
   const accessToken = getAccessToken();
-  // GET
+  // GET userID
+  var getUserIDOpt = {
+    method: 'GET',
+    url: 'https://api.spotify.com/v1/me',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken,
+      'Content-Type': 'application/json'
+    },
+    json: true
+  };
   async function getCreatedPlaylist() {
     try {
-      res.render('mypage/done');
+      var userIDRes = await reqp(getUserIDOpt);
+      var json = {
+        userID: userIDRes.id
+      };
+      res.render('mypage/done', json);
     } catch (error) {
       console.log(error);
     }
@@ -131,16 +144,13 @@ router.post('/toptracks', function (req, res, next) {
         json: true
       };
       var getPlaylistCoverRes = await reqp(getPlaylistCoverOpt);
-
-      playlistURI = createPlayListJson.uri;
-      res.status(200);
-      res.redirect('./done');
     } catch (error) {
       console.error(error);
     }
   }
   makePlaylist();
-
+  res.status(200);
+  res.redirect('./done');
 });
 
 module.exports = router;
