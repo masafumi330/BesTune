@@ -36,6 +36,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/done', function (req, res, next) {
+  const playlistURI = req.query.playlist;
   const accessToken = getAccessToken();
   // GET userID
   var getUserIDOpt = {
@@ -60,7 +61,7 @@ router.get('/done', function (req, res, next) {
           'Content-Type': 'application/json'
         },
         qs: {
-          limit: 1
+          limit: 1,
         },
         json: true
       };
@@ -68,6 +69,7 @@ router.get('/done', function (req, res, next) {
       var json = {
         userID: userIDRes.id,
         createdPlaylist: {
+          name: newestPlaylistRes.items[0].name,
           uri: newestPlaylistRes.items[0].uri,
           imgurl: newestPlaylistRes.items[0].images[0].url,
         }
@@ -164,13 +166,14 @@ router.post('/toptracks', function (req, res, next) {
         json: true
       };
       var getPlaylistCoverRes = await reqp(getPlaylistCoverOpt);
+      res.status(200);
+      res.redirect(`./done?playlist=` + createPlayListJson.id);
     } catch (error) {
       console.error(error);
     }
   }
   makePlaylist();
-  res.status(200);
-  res.redirect('./done');
+
 });
 
 module.exports = router;
