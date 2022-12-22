@@ -36,6 +36,10 @@ body {
   top: 70vh;
 }
 
+.btn {
+  margin-bottom: 1vw;
+}
+
 .spotify-btn {
   background-color: #1DB954;
 }
