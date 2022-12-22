@@ -39,7 +39,7 @@ router.get('/done', function (req, res, next) {
   const accessToken = getAccessToken();
   const playlistID = req.query.playlist;
   if (!playlistID) {
-    res.redirect('/');
+    res.redirect('/mypage');
   }
   if (!accessToken) {
     res.redirect('../login');

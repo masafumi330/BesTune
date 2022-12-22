@@ -1,16 +1,19 @@
 <%- include('../partials/header'); %>
-  <div class=>
-    <h1>Yeah! プレイリストを作成しました！</h1>
-    <h6>
-      <%= name %>
-    </h6>
-    <p>
-      <img src="<%= imgurl %> "><br>
-    </p>
-  </div>
-  <div class="text-center sign-in-btn">
-    <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="<%= uri %> " role="button">Open URL</a>
-    <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="/mypage" role="button">Mypageへ戻る</a>
+  <div class="text-center p-5" id="wrapper" style="height: 90vh;">
+    <div class="title">
+      <h3>Yeah! 作成しました！</h1>
+        <h5>
+          <%= name %>
+        </h5>
+        <p>
+          <img src="<%= imgurl %> "><br>
+        </p>
+    </div>
+    <div class="text-center sign-in-btn">
+      <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="<%= uri %> " role="button">Open Playlist</a>
+      <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="/mypage" role="button">Mypageへ戻る</a>
+    </div>
+
   </div>
 
   <%- include('../partials/footer'); %>
