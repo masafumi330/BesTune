@@ -36,7 +36,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/done', function (req, res, next) {
-  res.render('mypage/done');
+  const accessToken = getAccessToken();
+  // GET
+  async function getCreatedPlaylist() {
+    try {
+      res.render('mypage/done');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getCreatedPlaylist();
 });
 
 router.post('/toptracks', function (req, res, next) {
@@ -125,7 +134,6 @@ router.post('/toptracks', function (req, res, next) {
 
       playlistURI = createPlayListJson.uri;
       res.status(200);
-      // res.render('mypage/done', { playlistURI: createPlayListJson.uri });
       res.redirect('./done');
     } catch (error) {
       console.error(error);
