@@ -36,51 +36,38 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/done', function (req, res, next) {
-  const playlistURI = req.query.playlist;
   const accessToken = getAccessToken();
-  // GET userID
-  var getUserIDOpt = {
-    method: 'GET',
-    url: 'https://api.spotify.com/v1/me',
-    headers: {
-      'Authorization': 'Bearer ' + accessToken,
-      'Content-Type': 'application/json'
-    },
-    json: true
-  };
-
-  async function getCreatedPlaylist() {
-    try {
-      var userIDRes = await reqp(getUserIDOpt);
-      // GET Newest Playlist
-      var getNewestPlaylistOpt = {
-        method: 'GET',
-        url: `https://api.spotify.com/v1/users/${userIDRes.id}/playlists`,
-        headers: {
-          'Authorization': 'Bearer ' + accessToken,
-          'Content-Type': 'application/json'
-        },
-        qs: {
-          limit: 1,
-        },
-        json: true
-      };
-      var newestPlaylistRes = await reqp(getNewestPlaylistOpt);
-      var json = {
-        userID: userIDRes.id,
-        createdPlaylist: {
-          name: newestPlaylistRes.items[0].name,
-          uri: newestPlaylistRes.items[0].uri,
-          imgurl: newestPlaylistRes.items[0].images[0].url,
-        }
-      };
-      console.log(json);
-      res.render('mypage/done', json);
-    } catch (error) {
-      console.log(error);
-    }
+  const playlistID = req.query.playlist;
+  if (!playlistID) {
+    res.redirect('/');
   }
-  getCreatedPlaylist();
+  if (!accessToken) {
+    res.redirect('../login');
+  } else {
+    var authOptions = {
+      method: 'GET',
+      url: `https://api.spotify.com/v1/playlists/${playlistID}`,
+      qs: {
+        fields: "images, name, uri"
+      },
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/json'
+      },
+      json: true
+    };
+    request(authOptions, function (error, response, body) {
+      var json = {
+        name: body.name,
+        uri: body.uri,
+        imgurl: body.images[1].url,
+      };
+      res.render('mypage/done', json);
+    })
+  }
+
+
+
 });
 
 router.post('/toptracks', function (req, res, next) {

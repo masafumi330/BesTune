@@ -2,12 +2,14 @@
   <div class=>
     <h1>Yeah! プレイリストを作成しました！</h1>
     <h6>
-      <%= createdPlaylist.name %>
+      <%= name %>
     </h6>
-    <p>プレイリストイメージ</p>
+    <p>
+      <img src="<%= imgurl %> "><br>
+    </p>
   </div>
   <div class="text-center sign-in-btn">
-    <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="#" role="button">Open URL</a>
+    <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="<%= uri %> " role="button">Open URL</a>
     <a class="btn btn-primary btn-lg spotify-btn btn-rounded" href="/mypage" role="button">Mypageへ戻る</a>
   </div>
 
